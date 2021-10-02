@@ -1,33 +1,23 @@
-const search =(val, arr) => {
-    for(let i =0;i<arr.length;i++){
-        console.log(i);
-        if(val=== arr[i]) {
-            return i;
+function binary_Search(items, value){
+    var firstIndex  = 0,
+        lastIndex   = items.length - 1,
+        middleIndex = Math.floor((lastIndex + firstIndex)/2);
+
+    while(items[middleIndex] != value && firstIndex < lastIndex)
+    {
+       if (value < items[middleIndex])
+        {
+            lastIndex = middleIndex - 1;
+        } 
+      else if (value > items[middleIndex])
+        {
+            firstIndex = middleIndex + 1;
         }
+        middleIndex = Math.floor((lastIndex + firstIndex)/2);
     }
-    return -1;
-};
-const binary =(val, arr) =>{
-let lower =0;
-let upper = arr.length - 1;
 
-while(lower<= upper){
-    console.log("try");
-    const middle = lower - Math.floor((upper - lower)/ 2);
-    if(val=== arr[middle]) {
-        return middle;
-    }
-    if (val<arr[middle]) {
-        upper =middle-1;
-    }
-    else{
-        lower=middle+1;
-    }
+ return (items[middleIndex] != value) ? -1 : middleIndex;
 }
-return -1
-}
-
-const values =[0,1,2,3,4,5,6,7,8,9,10];
-
-console.log(binary(2, values)); 
-
+var items = [1, 2, 3, 4, 5, 7, 8, 9];
+console.log(binary_Search(items, 1));   
+console.log(binary_Search(items, 5));
