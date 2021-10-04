@@ -1,15 +1,26 @@
-for (let i = 1; i <= 100; i++) {
+function fizzbuzz(i) {
 
-    if ((i % 3 && i% 5) === 0)
-        console.log('FIZZ BUZZ ');
+    if ((i % 15) == 0){
+        return('FIZZ BUZZ');
+    }
+    
 
-    else if (i % 3 === 0) 
-    console.log('FIZZ ');
+    else if (i % 3 == 0) {
+        return('FIZZ');
 
-    else if (i % 5 === 0)
-    console.log('BUZZ ');
+    }
+    
+    else if (i % 5 == 0){
+        return('BUZZ');
 
-    else 
-    console.log(i);
+    }
+    
+    else{
+        return (i);
+    }
+    
+    //console.log(i);
 
-};
+}
+
+module.exports = fizzbuzz ;

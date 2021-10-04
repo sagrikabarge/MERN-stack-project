@@ -1,23 +1,22 @@
-function binary_Search(items, value){
-    var firstIndex  = 0,
-        lastIndex   = items.length - 1,
-        middleIndex = Math.floor((lastIndex + firstIndex)/2);
+const binSearch = (arr, key) => {
+    if (!Array.isArray(arr) || typeof key !== "number")
+        throw new Error("Invalid input");
+    const sortedArray = [...arr].sort((a, b) => a - b);
 
-    while(items[middleIndex] != value && firstIndex < lastIndex)
-    {
-       if (value < items[middleIndex])
-        {
-            lastIndex = middleIndex - 1;
-        } 
-      else if (value > items[middleIndex])
-        {
-            firstIndex = middleIndex + 1;
-        }
-        middleIndex = Math.floor((lastIndex + firstIndex)/2);
+    for (let i = 0; i < arr.length; i++)
+        if (arr[i] !== sortedArray[i]) throw new Error("Array must be sorted");
+
+    let lower = 0;
+    let upper = arr.length;
+
+    while (lower <= upper) {
+        const middle = lower + Math.floor((upper - lower) / 2);
+        if (key === arr[middle]) return middle + 1;
+        if (key > arr[middle]) lower = middle + 1;
+        else upper = middle - 1;
     }
+    return -1;
+};
 
- return (items[middleIndex] != value) ? -1 : middleIndex;
-}
-var items = [1, 2, 3, 4, 5, 7, 8, 9];
-console.log(binary_Search(items, 1));   
-console.log(binary_Search(items, 5));
+//console.log(binSearch([1,3,4,5,6],6));
+module.exports = binSearch;
